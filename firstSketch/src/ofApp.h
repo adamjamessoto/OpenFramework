@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
+#include "playerShot.h"
 
 class ofApp : public ofBaseApp{
 
@@ -22,5 +24,9 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
         int currentIndex;
+        vector<ofParameter<bool>> playerSelected;
+        ofxPanel gui;
+        vector<playerShot> shots;
+        vector<string> shooterNames;
 		
 };

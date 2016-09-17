@@ -1,12 +1,9 @@
 #include "ofApp.h"
-#include "playerShot.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     
     currentIndex = 0;
-    vector<playerShot> shots;
-    vector<string> shooterNames;
     
     //Path to the comma delimited file
     string filePath = "shot_logs_subset.csv";
@@ -31,14 +28,43 @@ void ofApp::setup(){
     }
     
     // Get unique list of shooter's names
-    for (std::vector<playerShot>::iterator it = shots.begin() ; it != shots.end(); ++it)
+    std::vector<playerShot>::iterator player_it;
+    for (player_it = shots.begin() ; player_it != shots.end(); ++player_it)
     {
-        shooterNames.push_back(it->playerName);
+        shooterNames.push_back(player_it->playerName);
     }
     
-    std::vector<string>::iterator it;
-    it = std::unique (shooterNames.begin(), shooterNames.end());
-    shooterNames.resize( std::distance(shooterNames.begin(),it) );
+    std::vector<string>::iterator unique_it;
+    unique_it = std::unique (shooterNames.begin(), shooterNames.end());
+    shooterNames.resize( std::distance(shooterNames.begin(),unique_it) );
+    
+    
+    // Create panel for the players
+    gui.setup("Select A Player:");
+    int shooterNamesCount = 0;
+    
+    for (int i=0; i<=shooterNames.size(); i++)
+    {
+        playerSelected.push_back(false);
+    }
+    
+    std::vector<string>::iterator shooter_it;
+    std::vector<ofParameter<bool>>::iterator selected_it;
+    
+    for (shooter_it = shooterNames.begin(), selected_it = playerSelected.begin(); shooter_it != shooterNames.end() && selected_it != playerSelected.end(); ++shooter_it, ++selected_it)
+    {
+        if (shooterNamesCount == 0)
+        {
+            gui.add(selected_it[0].set(shooter_it[0], true));
+            shooterNamesCount++;
+        }
+        
+        else
+        {
+            gui.add(selected_it[0].set(shooter_it[0], false));
+            shooterNamesCount++;
+        }
+    }
     
     std::cout << shooterNames.size() << endl;
     
@@ -51,8 +77,12 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+    
+    ofBackgroundGradient(ofColor::white, ofColor::gray);
     ofDrawBitmapStringHighlight("Everything works!", 20, 20);
+
+    
+    gui.draw();
     
 }
 
