@@ -1,9 +1,11 @@
 #include "ofApp.h"
+#include "playerShot.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     
     currentIndex = 0;
+    vector<playerShot> shots;
     
     //Path to the comma delimited file
     string filePath = "shot_logs.csv";
@@ -20,11 +22,14 @@ void ofApp::setup(){
     for (ofBuffer::Line it = buffer.getLines().begin(), end = buffer.getLines().end(); it != end; ++it) {
         string line = *it;
         //Split line into strings
-        vector<string> words = ofSplitString(line, ",");
+        vector<string> shotData = ofSplitString(line, ",");
         
-            
-        std::cout << words [0]<< endl;
+        shots.push_back(*new playerShot(stoi(shotData[0]), shotData[3][0], stoi(shotData[5]), stoi(shotData[6]), stoi(shotData[9]), stod(shotData[10]), stod(shotData[11]), stoi(shotData[12]), shotData[13], shotData[19], stoi(shotData[20])));
+        
     }
+    
+    std::cout << shots.size() << endl;
+
 
 }
 
