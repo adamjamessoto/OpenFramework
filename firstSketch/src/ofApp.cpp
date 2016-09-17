@@ -6,9 +6,10 @@ void ofApp::setup(){
     
     currentIndex = 0;
     vector<playerShot> shots;
+    vector<string> shooterNames;
     
     //Path to the comma delimited file
-    string filePath = "shot_logs.csv";
+    string filePath = "shot_logs_subset.csv";
     
     //Load file placed in bin/data
     ofFile file(filePath);
@@ -16,6 +17,7 @@ void ofApp::setup(){
     if(!file.exists()){
         ofLogError("The file " + filePath + " is missing");
     }
+    
     ofBuffer buffer(file);
     
     //Read file line by line
@@ -28,9 +30,18 @@ void ofApp::setup(){
         
     }
     
-    std::cout << shots.size() << endl;
-
-
+    // Get unique list of shooter's names
+    for (std::vector<playerShot>::iterator it = shots.begin() ; it != shots.end(); ++it)
+    {
+        shooterNames.push_back(it->playerName);
+    }
+    
+    std::vector<string>::iterator it;
+    it = std::unique (shooterNames.begin(), shooterNames.end());
+    shooterNames.resize( std::distance(shooterNames.begin(),it) );
+    
+    std::cout << shooterNames.size() << endl;
+    
 }
 
 //--------------------------------------------------------------
