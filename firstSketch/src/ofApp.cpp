@@ -4,6 +4,12 @@
 void ofApp::setup(){
     
     currentIndex = 0;
+    rect.x = 215;
+    rect.y = 0;
+    rect.width = 800;
+    rect.height = 750;
+    
+    duncanCard = *new playerCard(0.776714514,2.084529506,0.496012759,623);
     
     //Path to the comma delimited file
     string filePath = "shot_logs_subset.csv";
@@ -66,77 +72,81 @@ void ofApp::setup(){
         }
     }
     
-    std::cout << shooterNames.size() << endl;
-    
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    ofBackgroundGradient(ofColor::white, ofColor::gray);
-    ofDrawBitmapStringHighlight("Everything works!", 20, 20);
-
+    ofBackgroundGradient(ofColor::black, ofColor::gray);
     
+    
+    
+    ofDrawRectRounded(rect, 10);
     gui.draw();
-    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseEntered(int x, int y){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseExited(int x, int y){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
-
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
+void ofApp::dragEvent(ofDragInfo dragInfo){
+    
+}
 
+std::vector<playerShot> getPlayerData(string player){
+    vector<playerShot> playerShots;
+    
+    
 }

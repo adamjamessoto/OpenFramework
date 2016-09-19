@@ -9,7 +9,7 @@
 #include "playerShot.h"
 
 playerShot::playerShot(){
-
+    
 }
 
 playerShot::playerShot(int gameID, char win, int shotNumber, int period, int dribbles, double touchTime, double shotDistance, int ptsType, string shotResult, string playerName, int playerID){
