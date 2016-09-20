@@ -171,8 +171,8 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				AFBAC690DE3AB1FD23E09511 /* playerShot.cpp */,
 				B6E6303365DCAF29A06ED6E0 /* playerShot.h */,
-				EFA8DEF91D90A17F007DA640 /* playerCard.h */,
 				EFA8DEFA1D90A191007DA640 /* playerCard.cpp */,
+				EFA8DEF91D90A17F007DA640 /* playerCard.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

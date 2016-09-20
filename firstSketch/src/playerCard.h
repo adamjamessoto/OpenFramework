@@ -8,9 +8,11 @@
 
 #include <stdio.h>
 #include "ofMain.h"
+//#include "playerShot.h"
 
 class playerCard {
 public:
+    string playerName;
     double avgdribbles;
     double avgtouch;
     double avgfg;
@@ -21,8 +23,8 @@ public:
     int width;
     
     playerCard();
-    playerCard(double avgdribbles, double avgtouch, double avgfg, int totalpts);
-    playerCard(vector<playerShot>);
+    playerCard(string playerName, double avgdribbles, double avgtouch, double avgfg, int totalpts);
+//    playerCard(vector<playerShot>);
     
     void setup();
     void update();

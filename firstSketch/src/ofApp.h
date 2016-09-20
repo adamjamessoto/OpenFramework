@@ -5,6 +5,8 @@
 #include "playerShot.h"
 #include "playerCard.h"
 
+
+
 class ofApp : public ofBaseApp{
     
 public:
@@ -30,6 +32,12 @@ public:
     vector<playerShot> shots;
     vector<string> shooterNames;
     ofRectangle rect;
+    ofRectangle rect1;
     playerCard duncanCard;
+    ofImage tim;
+    
+    ofTrueTypeFont titleFont;
+    ofTrueTypeFont statFont;
+    
     
 };

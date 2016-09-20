@@ -7,13 +7,15 @@
 //
 
 #include "playerCard.h"
+//#include "playerShot.h"
 
 playerCard::playerCard(){
     
 }
 
-playerCard::playerCard(double avgdribbles, double avgtouch, double avgfg, int totalpts)
+playerCard::playerCard(string playerName, double avgdribbles, double avgtouch, double avgfg, int totalpts)
 {
+    this->playerName = playerName;
     this->avgdribbles = avgdribbles;
     this->avgtouch = avgtouch;
     this->avgfg = avgfg;

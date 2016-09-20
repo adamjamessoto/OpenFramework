@@ -3,13 +3,23 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    currentIndex = 0;
+    // load font
+    titleFont.load("verdana.ttf", 40);
+    statFont.load("verdana.ttf", 15);
+    
+    //image for tim duncan
+    tim.load("wide.jpg");
+    
+    //ofSetColor(0, 0, 0);
+    //ofFill();
     rect.x = 215;
     rect.y = 0;
     rect.width = 800;
     rect.height = 750;
+
     
-    duncanCard = *new playerCard(0.776714514,2.084529506,0.496012759,623);
+    
+    duncanCard = *new playerCard("tim duncan", 0.776714514, 2.084529506, 0.496012759, 623);
     
     //Path to the comma delimited file
     string filePath = "shot_logs_subset.csv";
@@ -59,7 +69,8 @@ void ofApp::setup(){
     
     for (shooter_it = shooterNames.begin(), selected_it = playerSelected.begin(); shooter_it != shooterNames.end() && selected_it != playerSelected.end(); ++shooter_it, ++selected_it)
     {
-        if (shooterNamesCount == 0)
+        //if (shooterNamesCount == 0)
+        if (shooter_it[0] == "tim duncan")
         {
             gui.add(selected_it[0].set(shooter_it[0], true));
             shooterNamesCount++;
@@ -84,10 +95,17 @@ void ofApp::draw(){
     
     ofBackgroundGradient(ofColor::black, ofColor::gray);
     
-    
-    
-    ofDrawRectRounded(rect, 10);
+    //ofDrawRectRounded(rect, 10);
+    titleFont.drawString(duncanCard.playerName, 390, 50);
     gui.draw();
+    tim.draw(275,60, 600, 400);
+    statFont.drawString("Avg. Dribbles: " + to_string(duncanCard.avgdribbles), 280, 540);
+    statFont.drawString("Avg. # of Touches: " + to_string(duncanCard.avgtouch), 570, 540);
+    statFont.drawString("Avg. Field Goals: " + to_string(duncanCard.avgfg), 280, 600);
+    statFont.drawString("Total Points: " + to_string(duncanCard.totalpts), 570, 600);
+    
+    
+    
 }
 
 //--------------------------------------------------------------
