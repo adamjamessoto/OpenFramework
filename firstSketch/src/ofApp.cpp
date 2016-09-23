@@ -71,11 +71,10 @@ void ofApp::setup(){
     }
     
     // Draw player name dropdown menu
-    //playerDropdown = new ofxDatGuiDropdown("Select a Player:",shooterNames);
-    view = new ofxDatGuiScrollView("Select a Player:", 10);
+    playerDropdown = new ofxDatGuiDropdown("Select a Player:",names);
+    playerDropdown -> onDropdownEvent(this, &ofApp::onDropdownEvent);
     
-    for(int i=0; i<names.size(); i++) view->add(names[i]);
-    
+    // set stats for each player
     for(int i=0; i<players.size(); i++){
      
         players[i].setAverageDribbles();
@@ -84,7 +83,8 @@ void ofApp::setup(){
         players[i].setTotalPoints();
     }
     
-    duncanCard = players[4];
+    
+    selectedPlayer = players[0];
 
     
 }
@@ -92,9 +92,7 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
-//    playerDropdown -> update();
-    view -> update();
-    
+    playerDropdown -> update();
 }
 
 //--------------------------------------------------------------
@@ -103,19 +101,18 @@ void ofApp::draw(){
     ofBackgroundGradient(ofColor::black, ofColor::gray);
     
     //ofDrawRectRounded(rect, 10);
-    titleFont.drawString(duncanCard.playerName, 390, 50);
+    titleFont.drawString(ofToUpper(selectedPlayer.playerName), 390, 50);
     gui.draw();
     tim.draw(275,60, 600, 400);
-    statFont.drawString("Avg. Dribbles: " + to_string(ceil((duncanCard.avgdribbles * pow( 10, 3)) - 0.49) / pow( 10, 3)), 280, 540);
-    statFont.drawString("Avg. # of Touches: " + duncanCard.getAverageTouches(), 570, 540);
-    statFont.drawString("Avg. Shot Distance: " + duncanCard.getAverageShotDistance(), 280, 650);
-    statFont.drawString("Total Points: " + duncanCard.getTotalPoints(), 570, 650);
-    
-//    playerDropdown -> draw();
-    view -> draw();
-    
-    
-    
+
+    // print stats to page
+    statFont.drawString("Avg. Dribbles: " + to_string(ceil((selectedPlayer.avgdribbles * pow( 10, 3)) - 0.49) / pow( 10, 3)), 280, 540);
+    statFont.drawString("Avg. # of Touches: " + selectedPlayer.getAverageTouches(), 570, 540);
+    statFont.drawString("Avg. Shot Distance: " + selectedPlayer.getAverageShotDistance(), 280, 650);
+    statFont.drawString("Total Points: " + selectedPlayer.getTotalPoints(), 570, 650);
+
+    // draw the dropdown menu
+    playerDropdown -> draw();
 }
 
 //--------------------------------------------------------------
@@ -173,8 +170,9 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
     
 }
 
-std::vector<playerShot> getPlayerData(string player){
-    vector<playerShot> playerShots;
+// change player based on selection
+void ofApp::onDropdownEvent(ofxDatGuiDropdownEvent e){
     
+    selectedPlayer = players[e.child];
     
 }

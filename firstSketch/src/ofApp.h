@@ -26,23 +26,20 @@ public:
     void mouseExited(int x, int y);
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
+    void onDropdownEvent(ofxDatGuiDropdownEvent e);
     void gotMessage(ofMessage msg);
     
     int currentIndex;
-    vector<ofParameter<bool>> playerSelected;
     ofxPanel gui;
-    ofxDatGuiDropdown* playerDropdown;
-    ofxDatGuiScrollView* view;
-    ofRectangle rect;
-    ofRectangle rect1;
-    playerCard duncanCard;
-    ofImage tim;
-    
-    vector<string> names;
-    vector<playerCard> players;
-    
     ofTrueTypeFont titleFont;
     ofTrueTypeFont statFont;
+    ofxDatGuiDropdown* playerDropdown;
+    ofRectangle rect;
+    ofRectangle rect1;
+    playerCard selectedPlayer;
+    ofImage tim;
+    vector<string> names;
+    vector<playerCard> players;
     
     
 };
