@@ -2,8 +2,10 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
+#include "ofxDatGui.h"
 #include "playerShot.h"
 #include "playerCard.h"
+#include <algorithm>
 
 
 
@@ -29,12 +31,15 @@ public:
     int currentIndex;
     vector<ofParameter<bool>> playerSelected;
     ofxPanel gui;
-    vector<playerShot> shots;
-    vector<string> shooterNames;
+    ofxDatGuiDropdown* playerDropdown;
+    ofxDatGuiScrollView* view;
     ofRectangle rect;
     ofRectangle rect1;
     playerCard duncanCard;
     ofImage tim;
+    
+    vector<string> names;
+    vector<playerCard> players;
     
     ofTrueTypeFont titleFont;
     ofTrueTypeFont statFont;

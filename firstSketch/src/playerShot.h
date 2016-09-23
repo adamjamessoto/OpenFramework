@@ -5,11 +5,13 @@
 //  Created by Adam Soto on 9/17/16.
 //
 //
+#pragma once
 
 #include <stdio.h>
 #include "ofMain.h"
 
 class playerShot {
+    
 public:
     int gameID;
     // string matchup;
