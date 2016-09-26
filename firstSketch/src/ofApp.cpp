@@ -9,16 +9,31 @@ void ofApp::setup(){
     titleFont.load("verdana.ttf", 40);
     statFont.load("verdana.ttf", 15);
     
-    //image for tim duncan
-    tim.load("wide.jpg");
+//    image players
+//    tim.load("wide.jpg");
+//    cp3.load("cp3.jpg");
+//    curry.load("curry.jpg");
+//    dj.load("deanjordan.jpg");
+//    jim.load("jimmy.jpg");
+//    kawhi.load("kawhi.jpg");
+//    melo.load("melo.jpg");
+//    kobe.load("kobe.jpg");
+//    lebron.load("lebron.jpg");
+//    dwight.load("dwight.jpg");
     
     //ofSetColor(0, 0, 0);
     //ofFill();
-    rect.x = 215;
-    rect.y = 0;
-    rect.width = 800;
-    rect.height = 750;
-
+    rect.x = 275;
+    rect.y = 5;
+    rect.width = 670;
+    rect.height = 715;
+    
+    //creating container rects for each stat
+    stat1.x = 310;
+    stat1.y = 462;
+    stat1.width = 600;
+    stat1.height = 250;
+    
     
     
     //duncanCard = *new playerCard("tim duncan", 0.776714514, 2.084529506, 0.496012759, 623);
@@ -86,6 +101,10 @@ void ofApp::setup(){
     
     selectedPlayer = players[0];
 
+//    for(int i =0; i<players.size(); i++){
+//        
+//        players[i].load(275,60,600,400);
+//    }
     
 }
 
@@ -99,18 +118,33 @@ void ofApp::update(){
 void ofApp::draw(){
     
     ofBackgroundGradient(ofColor::black, ofColor::gray);
+    //draw box for player container
     
+    ofSetColor(237,185,49);
+    ofFill();
+    ofDrawRectRounded(rect, 10);
     //ofDrawRectRounded(rect, 10);
-    titleFont.drawString(ofToUpper(selectedPlayer.playerName), 390, 50);
+    
+    ofSetColor(0, 0, 0);
+    ofFill();
+    ofDrawRectRounded(stat1, 10);
     gui.draw();
-    tim.draw(275,60, 600, 400);
-
+    
+    ofSetColor(0,0,0);
+    ofFill();
+    titleFont.drawString(ofToUpper(selectedPlayer.playerName), 425, 50);
+    
+    
+    
     // print stats to page
-    statFont.drawString("Avg. Dribbles: " + to_string(ceil((selectedPlayer.avgdribbles * pow( 10, 3)) - 0.49) / pow( 10, 3)), 280, 540);
-    statFont.drawString("Avg. # of Touches: " + selectedPlayer.getAverageTouches(), 570, 540);
-    statFont.drawString("Avg. Shot Distance: " + selectedPlayer.getAverageShotDistance(), 280, 650);
-    statFont.drawString("Total Points: " + selectedPlayer.getTotalPoints(), 570, 650);
-
+    ofSetColor(255, 255, 255);
+    statFont.drawString("Avg. Dribbles: " + to_string(ceil((selectedPlayer.avgdribbles * pow( 10, 3)) - 0.49) / pow( 10, 3)), 315, 480);
+    statFont.drawString("Avg. # of Touches: " + selectedPlayer.getAverageTouches(), 315, 540);
+    statFont.drawString("Avg. Shot Distance: " + selectedPlayer.getAverageShotDistance(), 315, 600);
+    statFont.drawString("Total Points: " + selectedPlayer.getTotalPoints(), 315, 660);
+    
+    //draw image
+    selectedPlayer.playerpicture.draw(310,60,600,400);
     // draw the dropdown menu
     playerDropdown -> draw();
 }

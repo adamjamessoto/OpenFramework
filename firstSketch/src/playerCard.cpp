@@ -19,6 +19,7 @@ playerCard::playerCard(string playerName){
     this->avgfg = 0;
     this->avgshotdistance = 0;
     this->totalpts = 0;
+    this->playerpicture.load(playerName+".jpg");
 }
 
 playerCard::playerCard(string playerName, double avgdribbles, double avgtouch, double avgfg, int totalpts)
@@ -29,6 +30,7 @@ playerCard::playerCard(string playerName, double avgdribbles, double avgtouch, d
     this->avgfg = avgfg;
     this->avgshotdistance = 0;
     this->totalpts = totalpts;
+    this->playerpicture.load(playerName+".jpg");
 }
 
 // Setter Methods

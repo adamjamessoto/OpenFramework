@@ -38,7 +38,7 @@ public:
     string getAverageTouches();
     string getAverageShotDistance();
     string getTotalPoints();
-    
+    ofImage playerpicture;
     
     void setup();
     void update();
