@@ -27,6 +27,7 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void onDropdownEvent(ofxDatGuiDropdownEvent e);
+    void onColorPickerEvent(ofxDatGuiColorPickerEvent e);
     void gotMessage(ofMessage msg);
     
     int currentIndex;
@@ -34,22 +35,14 @@ public:
     ofTrueTypeFont titleFont;
     ofTrueTypeFont statFont;
     ofxDatGuiDropdown* playerDropdown;
+    ofxDatGuiColorPicker* cardColorPicker;
+    ofColor cardColor;
     ofRectangle rect;
     ofRectangle stat1;
     ofRectangle stat2;
     ofRectangle stat3;
     ofRectangle stat4;
     playerCard selectedPlayer;
-    ofImage tim;
-    ofImage cp3;
-    ofImage curry;
-    ofImage dj;
-    ofImage jim;
-    ofImage kawhi;
-    ofImage kobe;
-    ofImage melo;
-    ofImage dwight;
-    ofImage lebron;
     vector<string> names;
     vector<playerCard> players;
     

@@ -8,21 +8,12 @@ void ofApp::setup(){
     // load font
     titleFont.load("verdana.ttf", 40);
     statFont.load("verdana.ttf", 15);
-    
-//    image players
-//    tim.load("wide.jpg");
-//    cp3.load("cp3.jpg");
-//    curry.load("curry.jpg");
-//    dj.load("deanjordan.jpg");
-//    jim.load("jimmy.jpg");
-//    kawhi.load("kawhi.jpg");
-//    melo.load("melo.jpg");
-//    kobe.load("kobe.jpg");
-//    lebron.load("lebron.jpg");
-//    dwight.load("dwight.jpg");
-    
+  
     //ofSetColor(0, 0, 0);
     //ofFill();
+    
+    cardColor = ofColor(237,185,49);
+    
     rect.x = 275;
     rect.y = 5;
     rect.width = 670;
@@ -33,10 +24,6 @@ void ofApp::setup(){
     stat1.y = 462;
     stat1.width = 600;
     stat1.height = 250;
-    
-    
-    
-    //duncanCard = *new playerCard("tim duncan", 0.776714514, 2.084529506, 0.496012759, 623);
     
     //Path to the comma delimited file
     string filePath = "shot_logs_subset.csv";
@@ -86,10 +73,18 @@ void ofApp::setup(){
     }
     
     // Draw player name dropdown menu
-    playerDropdown = new ofxDatGuiDropdown("Select a Player:",names);
+    playerDropdown = new ofxDatGuiDropdown("Select a Player:", names);
+    //playerDropdown -> setAnchor(ofxDatGuiAnchor::TOP_LEFT);
+    playerDropdown -> setPosition(0, 0);
     playerDropdown -> onDropdownEvent(this, &ofApp::onDropdownEvent);
     
-    // set stats for each player
+    // Draw color picker for card
+    cardColorPicker = new ofxDatGuiColorPicker("Card Color", cardColor);
+    //cardColorPicker -> setAnchor(ofxDatGuiAnchor::TOP_RIGHT);
+    cardColorPicker -> setPosition(0, 300);
+    cardColorPicker->onColorPickerEvent(this, &ofApp::onColorPickerEvent);
+    
+    // Set stats for each player
     for(int i=0; i<players.size(); i++){
      
         players[i].setAverageDribbles();
@@ -98,43 +93,35 @@ void ofApp::setup(){
         players[i].setTotalPoints();
     }
     
-    
+    // Set first player to display
     selectedPlayer = players[0];
-
-//    for(int i =0; i<players.size(); i++){
-//        
-//        players[i].load(275,60,600,400);
-//    }
-    
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     
     playerDropdown -> update();
+    cardColorPicker -> update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     
     ofBackgroundGradient(ofColor::black, ofColor::gray);
-    //draw box for player container
     
-    ofSetColor(237,185,49);
+    //draw box for player container
+    ofSetColor(cardColor);
     ofFill();
     ofDrawRectRounded(rect, 10);
-    //ofDrawRectRounded(rect, 10);
     
     ofSetColor(0, 0, 0);
     ofFill();
     ofDrawRectRounded(stat1, 10);
-    gui.draw();
+    //gui.draw();
     
     ofSetColor(0,0,0);
     ofFill();
     titleFont.drawString(ofToUpper(selectedPlayer.playerName), 425, 50);
-    
-    
     
     // print stats to page
     ofSetColor(255, 255, 255);
@@ -145,8 +132,12 @@ void ofApp::draw(){
     
     //draw image
     selectedPlayer.playerpicture.draw(310,60,600,400);
+    
     // draw the dropdown menu
     playerDropdown -> draw();
+    
+    // draw the colorpicker menu
+    cardColorPicker -> draw();
 }
 
 //--------------------------------------------------------------
@@ -208,5 +199,9 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 void ofApp::onDropdownEvent(ofxDatGuiDropdownEvent e){
     
     selectedPlayer = players[e.child];
-    
+}
+
+void ofApp::onColorPickerEvent(ofxDatGuiColorPickerEvent e)
+{
+    cardColor = e.color;
 }
