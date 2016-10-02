@@ -13,6 +13,8 @@
 class playerShot {
     
 public:
+    
+    // Public Variables
     int gameID;
     // string matchup;
     // char location; // h or a
@@ -35,11 +37,13 @@ public:
     string playerName;
     int playerID;
     
+    // Class Constructors
     playerShot();
     playerShot(int gameID, char win, int shotNumber, int period, int dribbles, double touchTime, double shotDistance, int ptsType, string shotResult, string playerName, int playerID);
 
-    
-    void setup();
-    void update();
+    // Rule of 3
+    ~playerShot();
+    playerShot(const playerShot& other);
+    playerShot& operator=(const playerShot& other);
     
 };

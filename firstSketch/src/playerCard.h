@@ -13,6 +13,8 @@
 
 class playerCard {
 public:
+    
+    // Public Variables
     string playerName;
     double avgdribbles;
     double avgtouch;
@@ -25,23 +27,28 @@ public:
     int width;
     vector<playerShot> shots;
     
+    // Constructors
     playerCard();
     playerCard(string playerName);
     playerCard(string playerName, double avgdribbles, double avgtouch, double avgfg, int totalpts);
     
+    // Setters
     void setAverageDribbles();
     void setAverageTouches();
     void setAverageShotDistance();
     void setTotalPoints();
     
+    // Getters
     string getAverageDribbles();
     string getAverageTouches();
     string getAverageShotDistance();
     string getTotalPoints();
     ofImage playerpicture;
     
-    void setup();
-    void update();
+    // Rule of 3 Methods
+    ~playerCard();
+    playerCard(const playerCard& other);
+    playerCard& operator=(const playerCard& other);
 };
 
 

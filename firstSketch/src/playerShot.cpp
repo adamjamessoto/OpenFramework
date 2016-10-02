@@ -26,3 +26,36 @@ playerShot::playerShot(int gameID, char win, int shotNumber, int period, int dri
     this->playerName = playerName;
     this->playerID = playerID;
 }
+
+// Rule of 3
+playerShot::~playerShot(){
+
+}
+
+playerShot::playerShot(const playerShot& other){
+    this->gameID = other.gameID;
+    this->win = other.win;
+    this->shotNumber = other.shotNumber;
+    this->period = other.period;
+    this->dribbles = other.dribbles;
+    this->touchTime = other.touchTime;
+    this->shotDistance = other.shotDistance;
+    this->ptsType = other.ptsType;
+    this->shotResult = other.shotResult;
+    this->playerName = other.playerName;
+    this->playerID = other.playerID;
+}
+
+playerShot& playerShot:: operator=(const playerShot& other){
+    this->gameID = other.gameID;
+    this->win = other.win;
+    this->shotNumber = other.shotNumber;
+    this->period = other.period;
+    this->dribbles = other.dribbles;
+    this->touchTime = other.touchTime;
+    this->shotDistance = other.shotDistance;
+    this->ptsType = other.ptsType;
+    this->shotResult = other.shotResult;
+    this->playerName = other.playerName;
+    this->playerID = other.playerID;
+}

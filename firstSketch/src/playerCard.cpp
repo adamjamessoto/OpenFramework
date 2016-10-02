@@ -33,8 +33,32 @@ playerCard::playerCard(string playerName, double avgdribbles, double avgtouch, d
     this->playerpicture.load(playerName+".jpg");
 }
 
-// Setter Methods
+// Rule of 3
+playerCard::~playerCard(){
+    
+}
 
+playerCard::playerCard(const playerCard& other){
+    this->playerName = other.playerName;
+    this->avgdribbles = other.avgdribbles;
+    this->avgtouch = other.avgtouch;
+    this->avgfg = other.avgfg;
+    this->avgshotdistance = 0;
+    this->totalpts = other.totalpts;
+    this->playerpicture.load(playerName+".jpg");
+}
+
+playerCard& playerCard:: operator=(const playerCard& other){
+    this->playerName = other.playerName;
+    this->avgdribbles = other.avgdribbles;
+    this->avgtouch = other.avgtouch;
+    this->avgfg = other.avgfg;
+    this->avgshotdistance = 0;
+    this->totalpts = other.totalpts;
+    this->playerpicture.load(playerName+".jpg");
+}
+
+// Setter Methods
 void playerCard::setAverageDribbles(){
     
     double drib = 0.0;
@@ -88,25 +112,18 @@ void playerCard::setTotalPoints(){
 }
 
 // Getter Methods
-
 string playerCard::getAverageDribbles(){
-    
     return to_string(ceil((this->avgdribbles * pow( 10, 3)) - 0.49) / pow( 10, 3));
-    //ceil(this->avgdribbles*pow(10,3))/pow(10,3)
 }
 
 string playerCard::getAverageTouches(){
-    
-    
     return to_string(ceil(this->avgtouch*pow(10,3))/pow(10,3));
 }
 
 string playerCard::getAverageShotDistance(){
-    
     return to_string(ceil(this->avgshotdistance*pow(10,3))/pow(10,3));
 }
 
 string playerCard::getTotalPoints(){
-    
     return to_string(ceil(this->totalpts*pow(10,3))/pow(10,3));
 }
