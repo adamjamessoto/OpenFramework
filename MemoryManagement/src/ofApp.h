@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
-#include "ofxJSON.h"
 #include "Shot.h"
 
 class ofApp : public ofBaseApp{

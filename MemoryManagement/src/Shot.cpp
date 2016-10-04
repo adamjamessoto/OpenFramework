@@ -24,7 +24,7 @@ Shot::Shot(float xLoc, float yLoc, int madeFlag){
 
 // Rule of 3 Methods
 Shot::~Shot(){
-    
+//    delete this->shotLoc*;
 }
 
 Shot::Shot(const Shot& other){
@@ -34,9 +34,18 @@ Shot::Shot(const Shot& other){
 }
 
 Shot& Shot:: operator=(const Shot& other){
-    this->madeFlag = other.madeFlag;
-    this->shotLoc = other.shotLoc;
-    this->shotColor = other.shotColor;
+    
+    if(this != &other){
+        this->madeFlag = other.madeFlag;
+        this->shotColor = other.shotColor;
+        
+        // Reset our variable shotLoc
+        delete this->shotLoc;
+        shotLoc = NULL;
+        this->shotLoc = other.shotLoc;
+    }
+    
+    return *this;
 }
 
 // Helper Methods
@@ -60,10 +69,10 @@ ofColor Shot::checkMadeFlag(int madeFlag){
     cout << madeFlag << endl;
     
     if(madeFlag == 1)
-        return ofColor(0, 255, 0);
+        return ofColor(0, 255, 0, 50);
     
     else
-        ofColor(255, 0, 0);
+        ofColor(255, 0, 0, 100);
 }
 
 
@@ -71,4 +80,28 @@ void Shot::draw() {
     ofSetColor(this->shotColor);
     ofFill();
     ofDrawSphere(this->shotLoc->x, this->shotLoc->y, this->shotLoc->z, 3);
+}
+
+// Getters and Setters
+void Shot::setMadeFlag(int madeFlag) {
+    this->madeFlag = madeFlag;
+    //(*this).radius = radius;
+}
+int Shot::getMadeFlag() const {
+    return this->madeFlag;
+}
+
+void Shot::setShotColor(ofColor shotColor) {
+    this->shotColor = shotColor;
+}
+ofColor Shot::getShotColor() const {
+    return this->shotColor;
+}
+
+void Shot::setShotLoc(ofVec3f shotLoc){
+    
+}
+
+ofVec3f* Shot::getShotLoc() const {
+    return this->shotLoc;
 }

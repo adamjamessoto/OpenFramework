@@ -18,7 +18,6 @@ private:
     ofVec3f* shotLoc;
     ofColor shotColor;
     
-    
 public:
     // Constructor Methods
     Shot();
@@ -33,8 +32,15 @@ public:
     float alterCoordinateX(float xLoc);
     float alterCoordinateY(float yLoc);
     ofColor checkMadeFlag(int madeFlag);
-    
     void draw();
+    
+    // Getter and Setters
+    void setMadeFlag(int madeFlag);
+    int getMadeFlag() const;
+    void setShotColor(ofColor shotColor);
+    ofColor getShotColor() const;
+    void setShotLoc(ofVec3f shotLoc);
+    ofVec3f* getShotLoc() const;
     
 };
 
