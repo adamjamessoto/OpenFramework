@@ -42,7 +42,6 @@ void ofApp::draw(){
     for(int i=0; i<westbrookShots.size(); i++){
         westbrookShots[i].draw();
     }
-
 }
 
 //--------------------------------------------------------------

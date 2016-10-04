@@ -66,15 +66,12 @@ float Shot::alterCoordinateY(float yLoc){
 }
 
 ofColor Shot::checkMadeFlag(int madeFlag){
-    cout << madeFlag << endl;
+   if(madeFlag == 1)
+       return ofColor(0, 255, 0, 50);
     
-    if(madeFlag == 1)
-        return ofColor(0, 255, 0, 50);
-    
-    else
-        ofColor(255, 0, 0, 100);
+   else
+       return ofColor(255, 0, 0, 50);
 }
-
 
 void Shot::draw() {
     ofSetColor(this->shotColor);
@@ -85,8 +82,8 @@ void Shot::draw() {
 // Getters and Setters
 void Shot::setMadeFlag(int madeFlag) {
     this->madeFlag = madeFlag;
-    //(*this).radius = radius;
 }
+
 int Shot::getMadeFlag() const {
     return this->madeFlag;
 }
